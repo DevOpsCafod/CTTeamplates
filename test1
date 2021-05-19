@@ -1,6 +1,11 @@
 steps:
   - script: echo Hello!
-    condition: always()
+    condition: |
+  and
+  (
+    succeeded(),
+    eq(variables['Build.SourceBranchName'], 'release')
+  )
     
 schedules:
 - cron: '0 3 * * *'
